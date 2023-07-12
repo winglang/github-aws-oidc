@@ -24,7 +24,7 @@ For more information, please visit [Github Docs](https://docs.github.com/en/acti
 
 ## IAM Actions
 
-The IAM actions that this action requires is listed in the `policy` object. You can modify this as per your requirements.
+By default the `policy` object grants Administrator access to the AWS IAM Role. You can - and probably should - modify this as per your requirements.
 
 ## OpenID Connect Provider
 
