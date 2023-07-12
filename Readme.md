@@ -12,7 +12,7 @@ This Winglang application helps you to set up AWS OpenID Connect (OIDC) for your
 What sources are allowed to trigger this action? Please replace `winglang/wing-github-action` with your Github repository.
 
 ```js
-let subMatches = [
+let actionSources = [
   // allow pull requests
   "repo:winglang/wing-github-action:pull_request",
   // allow "main" branch
