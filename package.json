@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@cdktf/provider-aws": "^16.0.2"
+  }
+}
