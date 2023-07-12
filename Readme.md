@@ -36,17 +36,34 @@ The ARN of the role is provided as the output.
 
 ## Usage
 
-1. Clone the repository to your local system.
-2. Install dependencies `npm install`
-2. Update the allowed sources and IAM actions as required.
-3. Deploy the setup by running the Winglang application.
+To use this application:
+
+1. Clone the repository onto your local system.
+2. Install the dependencies using `npm install`
+3. Customize the allowed sources and IAM actions as necessary in the  [main.w](./main.w) file.
+4. Deploy the setup by running the Winglang application using the deploy script:
 
 ```
-wing compile -t tf-aws main.w
-cd target/main.tfaws
-terraform init
-terraform apply
+./deploy.sh
 ```
+
+This process will prompt for the repository name, which is not stored and will therefore need to be entered again during subsequent runs.
+
+For ease of use, consider renaming the [terraform.tfvars.example](./terraform.tfvars.example) file to `terrform.tfvars` and adjusting the `repo_name` accordingly.
+
+```
+cp terraform.tfvars.example terraform.tfvars
+```
+
+### Cleanup
+
+For destroying resources and cleaning up, you can use the `./destroy.sh` script.
+
+### Terraform State
+
+The [deploy](./deploy.sh) generates the Terraform state in the root folder of the project as `terraform.tfstate`. Make sure to retain this file for any future updates or for easy destruction of created resources.
+
+For multi-user setups or organizational contexts, you may want to consider other Terraform [backend options](https://www.winglang.io/docs/guides/terraform-backends) which may be more suitable for you.
 
 ## Contributing
 

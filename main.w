@@ -2,14 +2,19 @@ bring cloud;
 bring "cdktf" as cdktf;
 bring "@cdktf/provider-aws" as aws;
 
+let repoName = new cdktf.TerraformVariable(
+  type: "string",
+  description: "The name of the GitHub repository in the format 'org/repo'",
+) as "repo_name";
+
 // What sources are allowed to trigger this action?
 // Please adapt this to your needs.
 // Find more information at https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#understanding-the-oidc-token
 let actionSources = [
   // allow pull requests
-  "repo:winglang/wing-github-action:pull_request",
+  "repo:${repoName.stringValue}:pull_request",
   // allow "main" branch
-  "repo:winglang/wing-github-action:ref:refs/heads/main"
+  "repo:${repoName.stringValue}:ref:refs/heads/main"
 ];
 
 // What IAM actions does this action need?
@@ -20,11 +25,10 @@ let policy = {
     {
       "Effect": "Allow",
       "Action": [
-        "s3:*",
+        "*",
       ],
       "Resource": [
-        "arn:aws:s3:::my-bucket",
-        "arn:aws:s3:::my-bucket/*"
+        "*"
       ]
     }
   ]
