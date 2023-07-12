@@ -9,18 +9,14 @@ This Winglang application helps you to set up AWS OpenID Connect (OIDC) for your
 
 ## Define Allowed Action Sources
 
-What sources are allowed to trigger this action? Please replace `winglang/wing-github-action` with your Github repository.
+You'll be prompted for the `repo_name` variable from Terraform. This expects the format in `org/repo`. You can also specify this via a tfvars file by  renaming the [terraform.tfvars.example](./terraform.tfvars.example) file to `terrform.tfvars` and adjusting the `repo_name` accordingly.
 
-```js
-let actionSources = [
-  // allow pull requests
-  "repo:winglang/wing-github-action:pull_request",
-  // allow "main" branch
-  "repo:winglang/wing-github-action:ref:refs/heads/main"
-];
-```
+By default, this will allow assuming roles for Github Actions which are either running as part of:
 
-For more information, please visit [Github Docs](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#understanding-the-oidc-token)
+- A Pull Request
+- On the `main` branch
+
+For more information about possible criterias, please visit [Github Docs](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#understanding-the-oidc-token)
 
 ## IAM Actions
 
